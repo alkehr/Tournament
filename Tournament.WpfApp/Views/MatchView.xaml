@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Tournament.WpfApp.Views.MatchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:design="clr-namespace:Tournament.WpfApp.Design"
+             xmlns:converters="clr-namespace:Tournament.WpfApp.Converters"
+             xmlns:views="clr-namespace:Tournament.WpfApp.Views"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=design:MatchDesign, IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" True="Collapsed" False="Visible" />
+
+        <Path x:Key="NullSetPath" x:Shared="False" Stroke="Black" StrokeThickness="1" Stretch="Fill">
+            <Path.Data>
+                <GeometryGroup>
+                    <LineGeometry StartPoint="0,0" EndPoint=".5,1" />
+                    <LineGeometry StartPoint=".5,1" EndPoint="1,0" />
+                    <LineGeometry StartPoint="0,1" EndPoint=".5,0" />
+                    <LineGeometry StartPoint=".5,0" EndPoint="1,1" />
+                </GeometryGroup>
+            </Path.Data>
+        </Path>
+
+    </UserControl.Resources>
+
+    <Grid Background="White">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="MatchSize" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid Background="DarkGray" Visibility="{Binding WillPlay, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="40" />
+                <ColumnDefinition Width="*" MinWidth="40" />
+                <ColumnDefinition Width="*" MinWidth="40" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <ContentControl Grid.Row="0" Grid.Column="0" Content="{StaticResource NullSetPath}" />
+            <ContentControl Grid.Row="0" Grid.Column="1" Content="{StaticResource NullSetPath}" />
+            <ContentControl Grid.Row="0" Grid.Column="2" Content="{StaticResource NullSetPath}" />
+            <ContentControl Grid.Row="1" Grid.Column="0" Content="{StaticResource NullSetPath}" />
+            <ContentControl Grid.Row="1" Grid.Column="1" Content="{StaticResource NullSetPath}" />
+            <ContentControl Grid.Row="1" Grid.Column="2" Content="{StaticResource NullSetPath}" />
+
+            <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="Black" BorderThickness="0,0,1,0" />
+            <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,0" />
+            <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="1" />
+
+        </Grid>
+
+        <ItemsControl ItemsSource="{Binding Sets}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <views:SetSummaryView />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!--<Grid Visibility="{Binding WillPlay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="20" />
+                <ColumnDefinition Width="*" MinWidth="20" />
+                <ColumnDefinition Width="*" MinWidth="20" />
+                <ColumnDefinition Width="*" MinWidth="20" />
+                <ColumnDefinition Width="*" MinWidth="20" />
+                <ColumnDefinition Width="*" MinWidth="20" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SetScoreTextStyle}" Text="{Binding HomeTeamSet1Score}" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource SetScoreTextStyle}" Text="{Binding AwayTeamSet1Score}" />
+
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource SetScoreTextStyle}" Text="{Binding HomeTeamSet2Score}" />
+            <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource SetScoreTextStyle}" Text="{Binding AwayTeamSet2Score}" />
+
+            <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource SetScoreTextStyle}" Text="{Binding HomeTeamSet3Score}" />
+            <TextBlock Grid.Row="1" Grid.Column="5" Style="{StaticResource SetScoreTextStyle}" Text="{Binding AwayTeamSet3Score}" />
+
+            <ContentControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Content="{StaticResource SeparatorPath}" />
+            <ContentControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Content="{StaticResource SeparatorPath}" />
+            <ContentControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2" Content="{StaticResource SeparatorPath}" />
+
+            <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0,0,1,0" />
+            <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0,0,1,0" />
+            <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1" />
+        </Grid>-->
+        
+    </Grid>
+
+</UserControl>

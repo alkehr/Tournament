@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Tournament.WpfApp.Views.SetDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:design="clr-namespace:Tournament.WpfApp.Design"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=design:SetDataDesign, IsDesignTimeCreatable=True}">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        
+        <!--<TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Text="Team Name" />-->
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5,0" Text="{Binding HomeTeamName}"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="5,0" Text="{Binding AwayTeamName}"/>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10,2" MinWidth="50" Text="{Binding HomeTeamScore, Mode=TwoWay}" />
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="10,2" MinWidth="50" Text="{Binding AwayTeamScore, Mode=TwoWay}" />
+    </Grid>
+</UserControl>

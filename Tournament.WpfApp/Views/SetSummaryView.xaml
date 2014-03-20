@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="Tournament.WpfApp.Views.SetSummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:design="clr-namespace:Tournament.WpfApp.Design"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=design:SetDesign, IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+
+        <Path x:Key="SeparatorPath" x:Shared="False" Stroke="Black" StrokeThickness="1" Stretch="Fill">
+            <Path.Data>
+                <LineGeometry StartPoint="0,1" EndPoint="1,0" />
+            </Path.Data>
+        </Path>
+
+        <!--<Path x:Key="NullSetPath" x:Shared="False" Stroke="Black" StrokeThickness="1" Stretch="Fill">
+            <Path.Data>
+                <GeometryGroup>
+                    <LineGeometry StartPoint="0,0" EndPoint=".5,1" />
+                    <LineGeometry StartPoint=".5,1" EndPoint="1,0" />
+                    <LineGeometry StartPoint="0,1" EndPoint=".5,0" />
+                    <LineGeometry StartPoint=".5,0" EndPoint="1,1" />
+                </GeometryGroup>
+            </Path.Data>
+        </Path>-->
+
+        <Style x:Key="SetScoreTextStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="3,0" />
+            <Setter Property="FontSize" Value="10" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="SetScore" MinWidth="20" />
+            <ColumnDefinition SharedSizeGroup="SetScore" MinWidth="20" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SetScoreTextStyle}" Text="{Binding HomeTeamScore}" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource SetScoreTextStyle}" Text="{Binding AwayTeamScore}" />
+
+        <ContentControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Content="{StaticResource SeparatorPath}" />-->
+
+        <Button Command="{Binding EditScores}">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="SetScore" MinWidth="20" />
+                                <ColumnDefinition SharedSizeGroup="SetScore" MinWidth="20" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SetScoreTextStyle}" Text="{Binding HomeTeamScoreText}" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource SetScoreTextStyle}" Text="{Binding AwayTeamScoreText}" />
+
+                            <ContentControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Content="{StaticResource SeparatorPath}" />
+                        </Grid>
+                        <Border Name="buttonBorder" Background="LightGray" Opacity=".1">
+                            <Border.Effect>
+                                <DropShadowEffect Opacity="0.0" />
+                            </Border.Effect>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="buttonBorder" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Opacity="0.8" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseCaptured" Value="true">
+                            <Setter TargetName="buttonBorder" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Opacity="0.8" Direction="135"  
+                             ShadowDepth="3" BlurRadius="1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <!--<Setter TargetName="img" Property="Source" Value="{Binding DisabledImage}"/>-->
+                            <Setter TargetName="buttonBorder" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Opacity="0.0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <!--<Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0,0,1,0" />
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0,0,1,0" />
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="6" BorderBrush="Black" BorderThickness="1" />-->
+    </Grid>
+</UserControl>

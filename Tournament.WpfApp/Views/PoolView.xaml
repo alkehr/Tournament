@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="Tournament.WpfApp.Views.PoolView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Tournament.WpfApp.ViewModels"
+             xmlns:views="clr-namespace:Tournament.WpfApp.Views" xmlns:design="clr-namespace:Tournament.WpfApp.Design"
+             mc:Ignorable="d" Background="White" d:DataContext="{d:DesignInstance Type=design:PoolDesign, IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+
+        <!--<DataTemplate x:Key="MatchResultTemplate" DataType="{x:Type viewModels:MatchViewModel}">
+            <views:MatchView />
+        </DataTemplate>-->
+
+        <!--<DataTemplate x:Key="MatchResultsTemplate" DataType="{x:Type viewModels:TeamViewModel}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <ContentControl Grid.Column="0" Content="{Binding Match1}" ContentTemplate="{StaticResource MatchResultTemplate}" />
+                <ContentControl Grid.Column="1" Content="{Binding Match2}" ContentTemplate="{StaticResource MatchResultTemplate}" />
+                <ContentControl Grid.Column="2" Content="{Binding Match3}" ContentTemplate="{StaticResource MatchResultTemplate}" />
+            </Grid>
+        </DataTemplate>-->
+
+        <DataTemplate DataType="{x:Type viewModels:TeamViewModel}">
+            <views:TeamView />
+        </DataTemplate>
+        
+        <!--<DataTemplate DataType="{x:Type viewModels:TeamViewModel}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition SharedSizeGroup="TeamHeight" Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="TeamName" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="Results" Width="300" />
+                    <ColumnDefinition SharedSizeGroup="MatchWin" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="MatchLoss" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="SetWin" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="SetLoss" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="SetWinRatio" Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,2" Text="{Binding TeamName}" />
+
+                <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource MatchResultsTemplate}" />
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Margin="5,2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding MatchesWon}" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Margin="5,2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding MatchesLost}" />
+                <TextBlock Grid.Row="0" Grid.Column="4" Margin="5,2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SetsWon}" />
+                <TextBlock Grid.Row="0" Grid.Column="5" Margin="5,2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SetsLost}" />
+                <TextBlock Grid.Row="0" Grid.Column="6" Margin="5,2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SetWinRatio, StringFormat={}{0:P1}}" />
+            </Grid>
+        </DataTemplate>-->
+
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="15" IsSharedSizeScope="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="TeamName" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="Results" Width="Auto" />
+
+                    <!--<ColumnDefinition SharedSizeGroup="SetSize" />
+                    <ColumnDefinition SharedSizeGroup="SetSize" />
+                    <ColumnDefinition SharedSizeGroup="SetSize" />-->
+
+                    <ColumnDefinition SharedSizeGroup="MatchWin" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="MatchLoss" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="SetWin" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="SetLoss" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="SetWinRatio" Width="Auto" />
+                    <ColumnDefinition SharedSizeGroup="Rank" Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="1" Grid.Column="0" Margin="5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold" FontSize="13" Text="{Binding PoolName}" />
+                    <TextBlock Grid.Column="1" Margin="10,2,2,2" VerticalAlignment="Bottom" FontSize="10" Text="{Binding Location}" />
+                </Grid>
+                
+                <!--<ItemsControl ItemsSource="{Binding Teams}" />-->
+                <ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Teams}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="MatchSize" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding TeamName}" />
+                                <Border BorderBrush="Black" BorderThickness="1,1,1,0" />
+                                <!--<ContentControl Grid.Column="0" Content="{Binding}" ContentTemplate="{StaticResource MatchResultTemplate}" />-->
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
+                <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Margin="5,2" HorizontalAlignment="Center" Text="Matches" />
+                <TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3" Margin="5,2" HorizontalAlignment="Center" Text="Sets" />
+
+                <TextBlock Grid.Row="1" Grid.Column="2" Margin="5,2" HorizontalAlignment="Center" Text="Won" />
+                <TextBlock Grid.Row="1" Grid.Column="3" Margin="5,2" HorizontalAlignment="Center" Text="Lost" />
+                <TextBlock Grid.Row="1" Grid.Column="4" Margin="5,2" HorizontalAlignment="Center" Text="Won" />
+                <TextBlock Grid.Row="1" Grid.Column="5" Margin="5,2" HorizontalAlignment="Center" Text="Lost" />
+                <TextBlock Grid.Row="1" Grid.Column="6" Margin="5,2" HorizontalAlignment="Center" Text="%" />
+                <TextBlock Grid.Row="0" Grid.RowSpan="2" Width="30" Grid.Column="7" Margin="5,2" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Pool Rank" />
+            </Grid>
+
+            <ItemsControl Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Teams}" />
+
+        </Grid>
+
+    </Grid>
+</UserControl>
